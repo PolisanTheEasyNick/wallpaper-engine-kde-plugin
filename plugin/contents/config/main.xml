@@ -70,6 +70,10 @@
       <label>Mpv Stats</label>
       <default>false</default>
     </entry>
+    <entry name="MpvHwdec" type="String">
+      <label>Mpv Hardware Decode</label>
+      <default>auto</default>
+    </entry>
     <entry name="MouseInput" type="Bool">
       <label>Mouse Input</label>
       <default>true</default>

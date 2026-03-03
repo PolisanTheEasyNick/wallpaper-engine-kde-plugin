@@ -20,6 +20,7 @@ Flickable {
     property alias cfg_Fps: sliderFps.value
     property alias cfg_Volume: sliderVol.value
     property alias cfg_MpvStats: ckbox_mpvStats.checked
+    property string cfg_MpvHwdec
     property alias cfg_Speed: spin_speed.dValue
     property alias cfg_MuteAudio: ckbox_muteAudio.checked
     property alias cfg_MouseInput: ckbox_mouseInput.checked
@@ -315,6 +316,30 @@ Flickable {
                 visible: cfg_VideoBackend == Common.VideoBackend.Mpv
                 actor: Switch {
                     id: ckbox_mpvStats
+                }
+            }
+
+            OptionItem {
+                text: 'Hardware Decode'
+                text_color: Kirigami.Theme.textColor
+                icon: '../../images/plugin.svg'
+                visible: cfg_VideoBackend == Common.VideoBackend.Mpv
+                actor: ComboBox {
+                    id: cbox_mpvHwdec
+                    model: [
+                        { text: "Auto",     value: "auto" },
+                        { text: "Software", value: "no"   }
+                    ]
+                    textRole: "text"
+                    onActivated: cfg_MpvHwdec = model[currentIndex].value
+                    Component.onCompleted: {
+                        for (let i = 0; i < model.length; i++) {
+                            if (model[i].value === cfg_MpvHwdec) {
+                                currentIndex = i;
+                                break;
+                            }
+                        }
+                    }
                 }
             }
         }
