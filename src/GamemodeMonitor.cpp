@@ -6,7 +6,7 @@ using namespace wekde;
 GamemodeMonitor::GamemodeMonitor(QQuickItem* parent): QQuickItem(parent), m_reqPause(false) {
     QDBusConnection sessionBus = QDBusConnection::sessionBus();
     if (! sessionBus.isConnected()) {
-        qFatal("gamemode: Cannot connect to the D-Bus session bus");
+        qWarning("gamemode: Cannot connect to the D-Bus session bus");
         return;
     }
 
